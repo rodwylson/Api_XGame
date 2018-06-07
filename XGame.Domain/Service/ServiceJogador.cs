@@ -13,7 +13,7 @@ namespace XGame.Domain.Service
         public ServiceJogador(IRepositoryJogador repositoryJogador)
         {
             _repositoryJogador = repositoryJogador;
-            string teste = String.Empty;
+            
         }
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
