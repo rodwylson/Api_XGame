@@ -13,8 +13,8 @@ namespace XGame.Domain.Entities
             Email = email;
             Senha = senha;
             new AddNotifications<Jogador>(this).IfNotEmail(x => x.Email.Endereco, "Informe um e-mail válido");
+
         }
-       
         public Guid Id { get; set; }
 
         public Nome Nome { get; set; }        
