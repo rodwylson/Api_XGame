@@ -5,13 +5,14 @@ using XGame.Domain.ValueObject;
 
 namespace XGame.Domain.Entities
 {
-    public class Jogador:Notifiable
+    public class Jogador : Notifiable
     {
-        new AddNotifications<Jogador>(this).
+        
         public Jogador(Email email, string senha)
         {
             Email = email;
             Senha = senha;
+            new AddNotifications<Jogador>(this).IfNotEmail(x => x.Email.Endereco, "Informe um e-mail válido");
         }
        
         public Guid Id { get; set; }
