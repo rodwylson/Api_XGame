@@ -14,8 +14,7 @@ namespace XGame.Domain.Entities
             Senha = senha;
 
             new AddNotifications<Jogador>(this)
-                    .IfNotEmail(x => x.Email.Endereco, "Informe um e-mail válido")
-                    .IfNullOrEmptyOrInvalidLength( x => x.Senha,6,32,"A senha deve ter entre 6 e 32 carateres");
+                    .IfNullOrInvalidLength( x => x.Senha,6,32,"A senha deve ter entre 6 e 32 carateres");
 
         }
         public Guid Id { get; set; }

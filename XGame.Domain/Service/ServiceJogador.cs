@@ -1,10 +1,12 @@
 ﻿
 using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using System;
 using XGame.Domain.Arguments.Jogador;
 using XGame.Domain.Entities;
 using XGame.Domain.Interface.Repositories;
 using XGame.Domain.Interface.Service;
+using XGame.Domain.Resources;
 using XGame.Domain.ValueObject;
 
 namespace XGame.Domain.Service
@@ -41,21 +43,21 @@ namespace XGame.Domain.Service
         {
             if (request == null)
             {
-                throw new Exception("AutenticarJogador é obrigatório!");
+                AddNotification("AutenticarJogadorRequest", Message.X0_E_OBRIGATORIO.ToFormat("AutenticarJogadorRequest"));
             }
+            
+            var email = new Email(request.Email);
+            var jogador = new Jogador(email,request.Senha);
 
-            var email = new Email("paulo");
-
-            var jogador = new Jogador(email,"222");
-
-            AddNotifications(jogador);
+            AddNotifications(jogador,email);
 
             if (jogador.IsInvalid())
             {
                 return null;
             }
 
-            var response = _repositoryJogador.AutenticarJogador(request);
+            var response = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
+            
 
             return response;
         }

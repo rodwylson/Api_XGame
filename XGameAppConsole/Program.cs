@@ -20,15 +20,16 @@ namespace XGameAppConsole
             AutenticarJogadorRequest request = new AutenticarJogadorRequest();
             Console.WriteLine("Criei instância do meu objeto request");
 
-            request.Email = "rode";
+            request.Email = "rode@gmailcom";
 
             var response = service.AutenticarJogador(request);
 
-            if (service.IsValid)
-            {
-                return response;
-            }
+            //if (service.IsValid)
+            //{
+            //    return response;
+            //}
 
+            
             Console.ReadKey();
         }
     }
