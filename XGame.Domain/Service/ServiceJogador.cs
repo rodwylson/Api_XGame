@@ -1,12 +1,15 @@
-﻿using System;
+﻿
+using prmToolkit.NotificationPattern;
+using System;
 using XGame.Domain.Arguments.Jogador;
 using XGame.Domain.Entities;
 using XGame.Domain.Interface.Repositories;
 using XGame.Domain.Interface.Service;
+using XGame.Domain.ValueObject;
 
 namespace XGame.Domain.Service
 {
-    public class ServiceJogador : IServiceJogador
+    public class ServiceJogador : Notifiable, IServiceJogador
     {
 
         private readonly IRepositoryJogador _repositoryJogador;
@@ -15,6 +18,11 @@ namespace XGame.Domain.Service
         {
             _repositoryJogador = repositoryJogador;
             
+        }
+
+        public ServiceJogador()
+        {
+
         }
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
@@ -36,24 +44,15 @@ namespace XGame.Domain.Service
                 throw new Exception("AutenticarJogador é obrigatório!");
             }
 
-            if (string.IsNullOrEmpty(request.Email))
-            {
-                throw new Exception("Informe um e-mail!");
-            }
+            var email = new Email("paulo");
 
-            if (IsEmail(request.Email))
-            {
-                throw new Exception("Informe um e-mail!");
-            }
+            var jogador = new Jogador(email,"222");
 
-            if (string.IsNullOrEmpty(request.Senha))
+            AddNotifications(jogador);
+
+            if (jogador.IsInvalid())
             {
-                throw new Exception("Informe um senha!");
-            }
-            
-            if (request.Senha.Length < 6)
-            {
-                throw new Exception("Dígite uma senha de no mínimo 6 caracteres!");
+                return null;
             }
 
             var response = _repositoryJogador.AutenticarJogador(request);

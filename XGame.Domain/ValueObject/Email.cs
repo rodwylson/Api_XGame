@@ -2,6 +2,11 @@
 {
     public class Email
     {
-        public string Endereco { get; set; }
+        public Email(string endereco)
+        {
+            Endereco = endereco;
+        }
+        
+        public string Endereco { get; private set; }
     }
 }

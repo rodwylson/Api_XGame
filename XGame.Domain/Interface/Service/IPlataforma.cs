@@ -1,5 +1,6 @@
 ﻿using System;
 using XGame.Domain.Arguments.Jogador;
+using XGame.Domain.Arguments.Plataforma;
 using XGame.Domain.ValueObject;
 
 namespace XGame.Domain.Interface.Service
