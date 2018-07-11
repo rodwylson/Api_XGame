@@ -17,12 +17,20 @@ namespace XGameAppConsole
             var service = new ServiceJogador();
             Console.WriteLine("Criei instância do serviço");
 
-            AutenticarJogadorRequest request = new AutenticarJogadorRequest();
+            var request = new AdicionarJogadorRequest()
+            {
+                Email = "rode@gmailcom",
+                PrimeiroNome  = "Rodwylson",
+                UltimoNome  = "Rodwylson",
+                Senha = "123"
+        };
+
+               
             Console.WriteLine("Criei instância do meu objeto request");
-
-            request.Email = "rode@gmailcom";
-
-            var response = service.AutenticarJogador(request);
+           /* request.Email = "rode@gmailcom";
+            request.Senha = "123456";
+             */           
+            var response = service.AdicionarJogador(request);
 
             //if (service.IsValid)
             //{

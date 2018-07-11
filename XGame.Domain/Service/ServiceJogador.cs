@@ -29,10 +29,16 @@ namespace XGame.Domain.Service
 
         public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
         {
-            Jogador jogador = new Jogador(null,null);
-            jogador.Nome = request.Nome;
-            jogador.Email = request.Email;
-            jogador.Status = Enum.EnumSituacaoJogador.EmAndamento;
+            var nome = new Nome(request.PrimeiroNome,request.UltimoNome);
+            var email = new Email(request.Email);
+
+
+            Jogador jogador = new Jogador(nome,email,request.Senha );
+
+            if (IsInvalid())
+            {
+                return null;
+            }
 
             Guid id = _repositoryJogador.AdicionarJogador(jogador);
            
@@ -56,10 +62,11 @@ namespace XGame.Domain.Service
                 return null;
             }
 
-            var response = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
+            //var response = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
             
 
-            return response;
+           // return response;
+            return null;
         }
 
         private bool IsEmail(string email)

@@ -70,6 +70,15 @@ namespace XGame.Domain.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} é obrigatório e deve conter entre {1} e {2} carateres..
+        /// </summary>
+        public static string X0_E_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES {
+            get {
+                return ResourceManager.GetString("X0_E_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} inválida..
         /// </summary>
         public static string X0_INVALIDA {
